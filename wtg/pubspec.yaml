@@ -31,20 +31,42 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.8
+  # --- State Management ---
+  flutter_bloc: ^8.1.3
+  equatable: ^2.0.5
+  get_it: ^7.6.4
+
+  # --- Navigation ---
+  go_router: ^12.1.0
+
+  # --- UI & Design ---
+  cupertino_icons: ^1.0.2
+  flutter_svg: ^2.0.9
+  google_fonts: ^6.1.0
+
+  # --- Maps & Location ---
+  mapbox_maps_flutter: ^0.5.1
+  geolocator: ^10.1.0
+  permission_handler: ^11.1.0
+
+  # --- Database & Offline ---
+  isar: ^3.1.0
+  isar_flutter_libs: ^3.1.0
+  path_provider: ^2.1.1
+  shared_preferences: ^2.2.2
+
+  # --- Network ---
+  dio: ^5.3.4
+  internet_connection_checker: ^1.0.0+1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
-  flutter_lints: ^6.0.0
+  
+  # --- Code Generation ---
+  build_runner: ^2.4.6
+  isar_generator: ^3.1.0
+  flutter_lints: ^3.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
