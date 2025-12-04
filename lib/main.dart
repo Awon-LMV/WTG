@@ -1,13 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:mapbox_maps_flutter/mapbox_maps_flutter.dart';
+import 'screens/main_navigation_screen.dart';
 
 void main() async {
   // 1. Обязательная строка для инициализации движка перед запуском асинхронного кода
   WidgetsFlutterBinding.ensureInitialized();
 
-  // 2. Здесь мы будем инициализировать базу данных и зависимости (позже)
+  // 2. Инициализация Mapbox
+  // TODO: Замените YOUR_MAPBOX_ACCESS_TOKEN на ваш реальный токен
+  // Получить токен можно здесь: https://account.mapbox.com/access-tokens/
+  await MapboxOptions.setAccessToken('YOUR_MAPBOX_ACCESS_TOKEN');
+
+  // 3. Здесь мы будем инициализировать базу данных и зависимости (позже)
   // await initDependencies();
 
-  // 3. Запуск приложения
+  // 4. Устанавливаем ориентацию экрана только портретная
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
+  // 5. Запуск приложения
   runApp(const WTGApp());
 }
 
@@ -20,40 +34,24 @@ class WTGApp extends StatelessWidget {
       title: 'WTG Map',
       debugShowCheckedModeBanner: false,
       
-      // 4. Тема приложения (пока базовая)
+      // Тема приложения
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
         useMaterial3: true,
-      ),
-      
-      // 5. Главный экран (пока заглушка)
-      home: const PlaceholderScreen(),
-    );
-  }
-}
-
-// Временный экран, чтобы проверить, что все работает
-class PlaceholderScreen extends StatelessWidget {
-  const PlaceholderScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('WTG Map Dev')),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Icons.map, size: 64, color: Colors.blue),
-            const SizedBox(height: 16),
-            const Text('Приложение настроено!'),
-            const SizedBox(height: 8),
-            const Text('Структура папок создана.'),
-            const SizedBox(height: 8),
-            const Text('Пакеты установлены.'),
-          ],
+        scaffoldBackgroundColor: Colors.black,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: Colors.black,
+            statusBarIconBrightness: Brightness.light,
+            statusBarBrightness: Brightness.dark,
+          ),
         ),
       ),
+      
+      // Главный экран с навигацией
+      home: const MainNavigationScreen(),
     );
   }
 }
